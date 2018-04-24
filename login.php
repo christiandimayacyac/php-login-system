@@ -22,7 +22,8 @@
         <div class="container">
             <div class="row">
                 <div class="col-1-of-3">
-                    <form action="#" class="login-form">
+                    <form action="#" class="login-form js-login-form">
+                        <div class="login-form__errors js-login-form__errors" style="display:none;"></div>
                         <h1 class="heading-1">Login</h1>
                         <div class="login-form__group">
                             <label for="registerEmail" class="login-form__label">Email</label>

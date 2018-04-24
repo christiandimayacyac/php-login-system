@@ -22,7 +22,8 @@
         <div class="container">
             <div class="row">
                 <div class="col-1-of-3">
-                    <form action="#" class="register-form">
+                    <form action="#" class="register-form js-register-form">
+                        <div class="register-form__errors js-register-form__errors" style="display:none;"></div>
                         <h1 class="heading-1">Register Account</h1>
                         <div class="register-form__group">
                             <label for="registerEmail" class="register-form__label">Email</label>
@@ -32,7 +33,7 @@
                             <label for="registerEmail" class="register-form__label">Password</label>
                             <input type="password" class="register-form__input" name="registerPassword" id="registerPassword" required>
                         </div>
-                        <span class="login-form__text">Already have an account? <a href="login.php" class="login-form__text--link">Login</a></span>
+                        <span class="register-form__text">Already have an account? <a href="login.php" class="register-form__text--link">Login</a></span>
                         <button class="register-form__btn">Register</button>
                     </form>
                 </div>

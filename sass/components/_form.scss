@@ -2,6 +2,13 @@
 .login-form {
     padding: 2rem;
 
+    &__errors {
+        color: $color-white;
+        background-color: rgba(250, 77, 77, 0.8);
+        padding: 2rem;
+        border-radius: 3px;
+    }
+
     &__label {
         display: block;
         color: $color-grey-darkest;

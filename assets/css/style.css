@@ -113,6 +113,12 @@ body {
 .register-form,
 .login-form {
   padding: 2rem; }
+  .register-form__errors,
+  .login-form__errors {
+    color: #fff;
+    background-color: rgba(250, 77, 77, 0.8);
+    padding: 2rem;
+    border-radius: 3px; }
   .register-form__label,
   .login-form__label {
     display: block;
