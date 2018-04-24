@@ -12,6 +12,14 @@
     transform: translate(-50%, -50%);
 }
 
+@mixin baseLink {
+    text-decoration: none;
+    &:link,
+    &:visited {
+        color: $link-color;
+    }
+}
+
 //MEDIA QUERY MANAGER
 
 /*

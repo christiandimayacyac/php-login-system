@@ -41,13 +41,21 @@ html {
 body {
   background-color: #fff;
   box-sizing: border-box;
-  padding: 3rem; }
+  padding: 3rem;
+  font-size: 1.6rem; }
+
+.container {
+  border: 1px solid red;
+  margin: 0 5%; }
 
 body {
   font-family: "Lato", sans-serif;
   font-weight: 400;
   line-height: 1.7;
   color: #999; }
+
+.heading-1 {
+  color: #373737; }
 
 @keyframes moveInToRight {
   0% {
@@ -101,6 +109,52 @@ body {
 
 .u-margin-bottom-l {
   margin-bottom: 8rem; }
+
+.register-form,
+.login-form {
+  padding: 2rem; }
+  .register-form__label,
+  .login-form__label {
+    display: block;
+    color: #333;
+    font-size: 1.5rem;
+    font-weight: 700; }
+  .register-form__input,
+  .login-form__input {
+    display: block;
+    font-size: inherit;
+    width: 100%;
+    margin-bottom: 1.5rem;
+    padding: 1rem 1.2rem;
+    border-radius: 3px;
+    border: 1px solid rgba(153, 153, 153, 0.4); }
+    .register-form__input::-webkit-input-placeholder,
+    .login-form__input::-webkit-input-placeholder {
+      color: #999; }
+  .register-form__text,
+  .login-form__text {
+    display: block;
+    font-size: 1.2rem;
+    margin-bottom: 2rem; }
+    .register-form__text--link,
+    .login-form__text--link {
+      text-decoration: none;
+      font-size: 1.3rem; }
+      .register-form__text--link:link, .register-form__text--link:visited,
+      .login-form__text--link:link,
+      .login-form__text--link:visited {
+        color: #5643fa; }
+  .register-form__btn,
+  .login-form__btn {
+    color: #333;
+    background-color: #fff;
+    border: 1px solid #777;
+    border-radius: 3px;
+    border: 1px solid rgba(153, 153, 153, 0.4);
+    padding: 1rem 2.5rem;
+    margin-bottom: 1rem;
+    font-weight: 700;
+    text-transform: uppercase; }
 
 .btn {
   position: relative;
@@ -181,7 +235,8 @@ body {
   @media (max-width: 56.25em) {
     .row {
       max-width: 50rem;
-      padding: 0 2rem; } }
+      padding: 0 2rem;
+      margin: 0; } }
   .row:not(:last-child) {
     margin-bottom: 8em; }
     @media (max-width: 56.25em) {
