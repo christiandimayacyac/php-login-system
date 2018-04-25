@@ -2,9 +2,11 @@
     // define the __CONFIG__ to allow the config.php file
     define('__CONFIG__', true);
     require_once "inc/config.php";
-    require_once "inc/functions.php";
 
-    ForceLogin();
+    Page::ForceLogin();
+
+    $User = new User($_SESSION['user_id']);
+    
 ?>
 
 <!DOCTYPE html>
@@ -24,9 +26,9 @@
     <body>
         <div class="container">
             <div class="row">
-                <div class="col-1-of-3">
+                <div class="col-1-of-1">
                     <h1 class="heading-1">Today is: <?php echo date("Y/m/d"); ?></h1>
-                    <h2 class="heading-2"><?php echo $_SESSION['user_id'] . " is your User ID."; ?> </h2>
+                    <h2 class="heading-2"><?php echo $User->user_email ." - registered at " . $User->user_reg_time; ?> </h2>
                     <nav class="navigation">
                         <a href="logout.php" class="navigation__link">Logout</a>
                     </nav>

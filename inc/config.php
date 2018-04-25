@@ -17,6 +17,8 @@
 
     //Include the DB.php file for DB connection
     include_once "classes/DB.php";
+    include_once "classes/User.php";
+    include_once "classes/Page.php";
 
     //Create New DB Connection
     $con = DB::getConnection();

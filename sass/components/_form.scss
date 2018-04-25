@@ -1,5 +1,6 @@
 .register-form,
 .login-form {
+    position: relative;
     padding: 2rem;
 
     &__errors {

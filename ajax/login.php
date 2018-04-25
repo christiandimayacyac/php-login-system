@@ -14,51 +14,46 @@
         //always return in JSON format
         header('Content-Type: application/json');
 
-        $responseArray = [];
+        $response_array = [];
 
         //collect data from POST Request
         $email = Filter::String($_POST['email']);
         $email = strtolower($email);
         $password = $_POST['password'];
 
-        //Query the user record matching the users input email
-        try{
-           $sql_Query = "SELECT * FROM users WHERE email = :email LIMIT 1";
-           $stmt = $con->prepare($sql_Query);
-           $stmt->execute(array(':email'=>$email));
+        //CODE TO GET USER INFO
+        $user_found = User::Find($email, true);
 
-           if ( $row = $stmt->fetch(PDO::FETCH_ASSOC) ) {
-                $hashedPassword = $row['password'];
-           }
-           else {
-                $responseArray['user_not_exists'] = Constant::$user_not_exists;
-                echo json_encode($responseArray, JSON_PRETTY_PRINT);
-                exit;
-           }
-        }
-        catch(PDOException $ex){
-            $responseArray['error'] = $ex->getErrorMessage();
-            echo json_encode($responseArray, JSON_PRETTY_PRINT);
-            exit;
-        }
+        //If user found, verify password then set redirect URL then return RESPONSE, otherwise return an ERROR RESPONSE
+        if ( $user_found ) {
+            //retrieve the hashed password from the query
+            $hashed_password = (string) $user_found['password'];
 
-        //verify user password if the user email exists in the database
-        if ( password_verify($password, $hashedPassword) == true ) {
-            // $responseArray['password_matched'] = true;
-            // $responseArray['redirect'] = "dashboard.php";
-            $responseArray['redirect'] = "dashboard.php";
-            $_SESSION['user_id'] = (int) $row['user_id'];
+            //verify user password if the user email exists in the database
+            if ( password_verify($password, $hashed_password) == true ) {
+                //set a redirect URL
+                $response_array['redirect'] = "dashboard.php";
+
+                //create session if password matches
+                $_SESSION['user_id'] = (int) $user_found['user_id'];
+            }
+            else {
+                //password does not match, set an error message
+                $response_array['password_mismatched'] = Constant::$password_err;
+            }
         }
-        else {
-            $responseArray['password_mismatched'] = Constant::$password_err;
+        else{
+            //user does not exist, set an error message
+            $response_array['user_not_exists'] = Constant::$user_not_exists;
         }
 
-        echo json_encode($responseArray, JSON_PRETTY_PRINT);
+        //return AJAX response
+        echo json_encode($response_array, JSON_PRETTY_PRINT);
         exit;
     }
     else {
         //Die and exit
-        echo "Invalid POST Request";
+        echo "Invalid POST Request&#33;";
         exit;
     }
 

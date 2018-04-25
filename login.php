@@ -2,9 +2,8 @@
     // define the __CONFIG__ to allow the config.php file
     define('__CONFIG__', true);
     require_once "inc/config.php";
-    require_once "inc/functions.php";
 
-    ForceDashboard();
+    Page::ForceDashboard();
 ?>
 
 <!DOCTYPE html>
@@ -27,11 +26,11 @@
                 <div class="col-1-of-3">
                     <form action="#" class="login-form js-login-form">
                         <div class="login-form__errors js-login-form__errors" style="display:none;"></div>
-                        <h1 class="heading-1">Login</h1>
+                        <h1 class="heading-1">PHP MySQL Login System</h1>
                         <div class="login-form__group">
                             <label for="registerEmail" class="login-form__label">Email</label>
                             <input type="email" class="login-form__input" name="loginEmail" id="loginEmail" placeholder="sample@gmail.com" required>
-                    </div>
+                        </div>
                         <div class="login-form__group">
                             <label for="loginEmail" class="login-form__label">Password</label>
                             <input type="password" class="login-form__input" name="loginPassword" id="loginPassword" required>

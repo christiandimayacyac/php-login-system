@@ -113,17 +113,22 @@ $(document).on("submit", ".js-login-form", function(event) {
 
         if ( data.redirect !== undefined ) {
             window.location = data.redirect;
-        } else if ( data.error !== undefined ) {
+        } 
+        else if ( data.error !== undefined ) {
             $errors
                 .text(data.error)
                 .show();
             return false;
-        } else if ( data.user_not_exists !== undefined ) {
+        } 
+        
+        if ( data.user_not_exists !== undefined ) {
             $errors
                 .text(data.user_not_exists)
                 .show();
             return false;
-        } else if ( data.password_mismatched !== undefined) {
+        } 
+        
+        if ( data.password_mismatched !== undefined) {
             $errors
                 .text(data.password_mismatched)
                 .show();
