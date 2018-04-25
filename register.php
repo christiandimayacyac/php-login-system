@@ -2,6 +2,9 @@
     // define the __CONFIG__ to allow the config.php file
     define('__CONFIG__', true);
     require_once "inc/config.php";
+    require_once "inc/functions.php";
+
+    ForceDashboard();
 ?>
 
 <!DOCTYPE html>

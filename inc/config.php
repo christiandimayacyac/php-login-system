@@ -4,9 +4,15 @@
         exit('Config File is not defined.');
     }
 
+    //Start Session if not yet started
+    if ( !isset($_SESSION) ) {
+        session_start();
+    }
+
 
     //Allow Error Reporting
-    error_reporting(-1);
+    //Use only during dev
+    error_reporting(E_ALL);
     ini_set('display_errors', 'On');
 
     //Include the DB.php file for DB connection

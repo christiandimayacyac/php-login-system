@@ -16,7 +16,6 @@ $(document).on("submit", ".js-register-form", function(event) {
         password: $("input[type='password']", $form).val()
     };
 
-    alert($errors + "is submitted");
 
     
 
@@ -83,8 +82,6 @@ $(document).on("submit", ".js-login-form", function(event) {
         password: $("input[type='password']", $form).val()
     };
 
-    alert($errors + "is submitted");
-
     
 
     //PERFORM BASIC FRONTEND DATA VALIDATION
@@ -113,24 +110,33 @@ $(document).on("submit", ".js-login-form", function(event) {
         assync: true,
     })
     .done(function ajaxDone(data){
-        //process data recieved
+
         if ( data.redirect !== undefined ) {
             window.location = data.redirect;
-        } else if ( data.error !== "" ) {
+        } else if ( data.error !== undefined ) {
             $errors
                 .text(data.error)
                 .show();
+            return false;
+        } else if ( data.user_not_exists !== undefined ) {
+            $errors
+                .text(data.user_not_exists)
+                .show();
+            return false;
+        } else if ( data.password_mismatched !== undefined) {
+            $errors
+                .text(data.password_mismatched)
+                .show();
+            return false;
         }
+
     })
     .fail(function ajaxFail(e){
         //return error message
-        console.log("Error: " + e);
     })
     .always(function ajaxAlwaysDoThis(data){
         //do this always
     })
-    
-    console.log("last");
 
     return false;
 });

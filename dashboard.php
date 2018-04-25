@@ -19,16 +19,16 @@
         <link rel="stylesheet" href="assets/css/style.css">
         <!-- <link rel="shortcut icon" type="image/png" href="img/favicon.png"> -->
         
-        <title>PHP MySQL Login System</title>
+        <title>Dashboard - PHP MySQL Login System</title>
     </head>
     <body>
         <div class="container">
             <div class="row">
                 <div class="col-1-of-3">
                     <h1 class="heading-1">Today is: <?php echo date("Y/m/d"); ?></h1>
+                    <h2 class="heading-2"><?php echo $_SESSION['user_id'] . " is your User ID."; ?> </h2>
                     <nav class="navigation">
-                        <a href="login.php" class="navigation__link">Login</a>
-                        <a href="register.php" class="navigation__link">Register</a>
+                        <a href="logout.php" class="navigation__link">Logout</a>
                     </nav>
                 </div>
             </div>

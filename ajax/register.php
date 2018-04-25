@@ -12,7 +12,7 @@
         //always return in JSON format
         header('Content-Type: application/json');
 
-        $arrayData = [];
+        $responseArray = [];
 
         //retrieve email from the data sent through AJAX
         $email = Filter::String($_POST['email']);
@@ -28,8 +28,8 @@
 
             if ( $stmt->rowCount() == 1 ) {
                 //return an error message
-                $arrayData['error'] = Constant::$email_exists_err;
-                $arrayData['is_logged_in'] = false;
+                $responseArray['error'] = Constant::$email_exists_err;
+                $responseArray['is_logged_in'] = false;
             }
             else {
                 $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
@@ -39,30 +39,39 @@
                     $stmt = $con->prepare($sqlUpdate);
                     $stmt->execute(array(":email"=>$email, ":hashedPassword"=>$hashedPassword));
 
-                    //retrieve the last UserId Appended
-                    $user_id = $con->lastInsertId();
+                    if ( $stmt->rowCount() == 1 ) {
+                        //retrieve the last UserId Appended
+                        $user_id = $con->lastInsertId();
 
-                    //Create a UserId Session
-                    $_SESSION['user_id'] = (int) $user_id;
+                        //Create a UserId Session
+                        $_SESSION['user_id'] = (int) $user_id;
+                        
+                        //Add a flag for is_logged_in status
+                        $responseArray['is_logged_in'] = true;
+
+                        //set a redirect URL
+                        $responseArray['redirect'] = "dashboard.php";               
+                    }
+                    else {
+                        $responseArray['error'] = Constant::db_insert_error;
+                        echo json_encode($responseArray, JSON_PRETTY_PRINT);
+                        exit;
+                    }
+
                     
-                    //Add a flag for is_logged_in status
-                    $arrayData['is_logged_in'] = true;
-
-                    //set a redirect URL
-                    $arrayData['redirect'] = "dashboard.php";
                 }
                 catch(PDOException $ex){
-                    $arrayData['error'] = $ex->getErrorMessage();
+                    $responseArray['error'] = $ex->getErrorMessage();
                 }
             }
         }
         catch(PDOException $ex) {
-            $arrayData['error'] = $ex->getErrorMessage();
+            $responseArray['error'] = $ex->getErrorMessage();
             
         }
 
         //return data
-        echo json_encode($arrayData, JSON_PRETTY_PRINT);
+        echo json_encode($responseArray, JSON_PRETTY_PRINT);
         exit;
         
     }

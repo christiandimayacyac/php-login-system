@@ -6,7 +6,7 @@
 		public static $generic_db_error = "An error encountered in the database.";
 		public static $generic_missing_parameter_error = "Missing parameter(s).";
 		public static $db_read_error = "Unable to read data from the database";
-		public static $db_insert_error = "Unable to insert record to the database";
+		public static $db_insert_error = "Unable to register your account.";
 		public static $db_update_error = "Unable to update record in the database";
 
 		//Accounts
@@ -23,8 +23,7 @@
 
 		//Form Errors
 		public static $email_exists_err = "Your email is already registered.";
-		public static $email_unmatch_err = "Emails do not match";
-		public static $non_alphanum_err = "Contains non-alphanumeric character(s)";
+		public static $user_not_exists = "User does not exists.";
 		public static $password_err = "Incorrect Password";
 
 		
